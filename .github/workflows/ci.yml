@@ -74,9 +74,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
-          tags: keanekyla/module11_is601:latest     
+          load: true
+          tags: keanekyla/module11_is601:latest
+
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: keanekyla/module11_is601:latest
+          format: table
+          exit-code: '0'
+          severity: CRITICAL,HIGH
+
+      - name: Push Docker image
+        run: docker push keanekyla/module11_is601:latest
