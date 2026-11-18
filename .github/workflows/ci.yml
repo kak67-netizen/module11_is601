@@ -79,15 +79,15 @@ jobs:
         with:
           context: .
           load: true
-          tags: keanekyla/module11_is601:latest
+          tags: keanek98/module11_is601:latest
 
       - name: Scan Docker image with Trivy
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: keanekyla/module11_is601:latest
+          image-ref: keanek98/module11_is601:latest
           format: table
           exit-code: '0'
           severity: CRITICAL,HIGH
 
       - name: Push Docker image
-        run: docker push keanekyla/module11_is601:latest
+        run: docker push keanek98/module11_is601:latest
