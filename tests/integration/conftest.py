@@ -2,6 +2,7 @@ import pytest
 
 from app.database import engine
 from app.models.user import Base
+from app.models.calculation import Calculation
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -12,4 +13,3 @@ def setup_test_database():
     yield
 
     Base.metadata.drop_all(bind=engine)
-    
